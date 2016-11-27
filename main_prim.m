@@ -1,4 +1,4 @@
-A = [0 1 2 3; 1 0 4 5; 2 4 0 6; 3 5 6 0];
+% File to test the different implementations of Prim's algorithm
 
 D=[0	144	114	105	31	109	135	132	85	79	158	20	73	162	127	190	156	58	87	71	154	55;
    144	0	144	181	147	76	195	73	64	114	220	135	71	18	39	60	37	101	62	146	205	153;
@@ -23,39 +23,26 @@ D=[0	144	114	105	31	109	135	132	85	79	158	20	73	162	127	190	156	58	87	71	154	55;
    154	205	61	51	123	227	19	136	189	99	19	137	172	214	166	206	183	190	154	85	0	98;
    55	153	66	49	24	146	79	113	111	48	102	39	95	169	124	183	151	100	91	20	98	0];
 
-P=randi(10,500,500);P(eye(size(P))~=0)=0;
-s=load('diag.mat'); % 2559x2559 sparse matrix
-m=s.Problem.A; % 
-m=full(m); % adjacency matrix
-p=randi(10,length(m(:,1)),length(m(:,1))); % 
 
-m=m.*p; % Give edges weigths different from 0
-m=m+m'; % guarantee symmetry
+% The following code assumes the file diag.mat, which can be obtained from 
+% http://www.cise.ufl.edu/research/sparse/matrices/AG-Monien/index.html
+% is located in the same folder as this file
 
-for i=1:10
-    f=@() prim(m);
-    p(i)=timeit(f);
+P=randi(10,500,500);
+P(eye(size(P))~=0)=0;
+s=load('diag.mat');                              % 2559x2559 sparse matrix
+m=s.Problem.A;                                   % Load matrix from problem
+m=full(m);                                       % Adjacency matrix
+p=randi(10,length(m(:,1)),length(m(:,1)));       % Random weigths that will be assigned to the edges of the graph
 
-    f=@() prim_heap(m);
-    ph(i)=timeit(f);
-end
-for i=1:length(mst(:,1))
-    Q(i,1)=D(mst(i,1),mst(i,2));
-    Q(i,2)=D(mst_2(i,1),mst_2(i,2));
-end
+m=m.*p;                                          % Give edges weigths different from 0
+m=m+m';                                          % Guarantee symmetry
 
-%tic;
-%[mst_2,cost_2] = prim_e_heap(P);
-%toc;
+% To test with diag.mat download the file and place it in the same folder as this file and change the input matrix of the
+% functions from D to m.
 
-%tic;
-%[mst_2,cost_2] = prim_heap(m);
-%toc;
+[mst, cost] = prim(D);                           % Iterative implementation
 
-%tic;
-%[mst,cost] = recursive_prim(P);
-%toc
+[mst_r, cost_r] = recursive_prim(D);             % Recursive implementation
 
-%tic;
-%[mst,cost] = prim(m);
-%toc;
+[mst_h, cost_h] = prim_heap(D);                  % Min heap implementation
