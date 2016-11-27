@@ -1,4 +1,4 @@
-function[mst, cost] = iterative_prim(A)
+function [mst, cost] = iterative_prim(A)
     [n,n] = size(A);                                             % The matrix is n by n, where n = # nodes.
     intree = 1; nintree=1;                                       % intree = nodes selected. nintree= #intree
     k = 0;                                                       % k is the number of edges selected
