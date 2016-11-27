@@ -41,7 +41,7 @@ m=m+m';                                          % Guarantee symmetry
 % To test with diag.mat download the file and place it in the same folder as this file and change the input matrix of the
 % functions from D to m.
 
-[mst, cost]     = iterative_prim(D);                           % Iterative implementation
+[mst, cost]     = iterative_prim(D);             % Iterative implementation
 
 [mst_r, cost_r] = recursive_prim(D);             % Recursive implementation
 
