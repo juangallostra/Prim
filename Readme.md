@@ -1,5 +1,5 @@
 
-The code here presents three different implementations of Prim's algorithm:
+The code presented here shows three different implementations of Prim's algorithm:
 
 1. Iterative
 2. Recursive
