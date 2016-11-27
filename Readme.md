@@ -8,7 +8,7 @@ The code presented here shows three different implementations of Prim's algorith
 For the code to work all the files should be located in the same folder, although here they are in different folders for clarification.
 Each of the three implementations is a function which expects the graph in matricial from as input, and returns the minimum spanning tree and cost of that graph. The file main_prim.m contains the calls to each of the three implementations.
 
-Furthermore, the implementations presented here assume that:
+The implementations presented here assume that:
 - The graph is presented in matricial form M, where M(i,j) = M(j,i) is the cost of the edge that goes from i to j or viceversa.
 - The graph is undirected.
 
