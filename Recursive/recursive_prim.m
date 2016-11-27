@@ -46,9 +46,9 @@ function [mst, cost] = recursive_prim(A,visited,edges,mst,cost)    % A is connec
     mst = [mst;selected_edge];
     visited = [visited, next_node];
     
-    % if the mst contains all tree nodes, return
+    % If the mst contains all tree nodes, return
     if length(visited) == length(A(1,:)); return
-    % else keep look for next edge in a recursive manner
+    % Else keep looking for next edge in a recursive manner
     else [mst,cost] = recursive_prim(A,visited, edges, mst, cost);
     end
 end
