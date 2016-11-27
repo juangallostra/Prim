@@ -1,4 +1,4 @@
-
+# Prim
 The code presented here shows three different implementations of Prim's algorithm:
 
 1. Iterative
